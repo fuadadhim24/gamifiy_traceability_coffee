@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:gamify_traceability_coffee/shared/theme.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -62,15 +63,24 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
 
   Widget buildBodyPage() {
     return Container(
+      margin: EdgeInsets.symmetric(horizontal: 24),
       decoration: BoxDecoration(
         color: greenBackgroundColor,
       ),
       child: Column(
         children: [
-          SizedBox(
-            height: 16,
-          ),
           buildTopNavigationToggle(),
+          SizedBox(
+            height: 20,
+          ),
+          buildTopStats(),
+          SizedBox(height:10,),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              buildTime(),
+            ],
+          )
         ],
       ),
     );
@@ -78,9 +88,10 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
 
   Widget buildTopNavigationToggle() {
     return Container(
-      height: 45,
-      margin: EdgeInsets.symmetric(horizontal: 42),
+      margin: EdgeInsets.symmetric(horizontal: 7),
+      height: 38,
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           InkWell(
             onTap: toggleCategorize,
@@ -105,7 +116,9 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
               ),
             ),
           ),
-          SizedBox(height: 4,),
+          SizedBox(
+            height: 4,
+          ),
           InkWell(
             onTap: toggleCategorize,
             child: AnimatedContainer(
@@ -132,5 +145,74 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
         ],
       ),
     );
+  }
+
+  Widget buildTopStats() {
+    return Container(
+      height: 78,
+      decoration: BoxDecoration(
+        color: orangeColor,
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Container(
+            height: 56,
+            width: 56,
+            margin: EdgeInsets.only(top: 10, left: 5, bottom: 10),
+            decoration: BoxDecoration(
+              color: darkOrangeColor,
+              borderRadius: BorderRadius.all(
+                Radius.circular(15),
+              ),
+            ),
+          ),
+          Container(
+            constraints: BoxConstraints(
+                maxWidth: MediaQuery.of(context).size.width - 170),
+            child: Text(
+              'Kamu melakukan lebih baik dari 60% player lain!',
+              style: WhiteRubikTextStyle.copyWith(
+                fontWeight: medium,
+                fontSize: 14,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget buildTime() {
+    return Container(
+      decoration: BoxDecoration(
+        color: darkBlueColor,
+        borderRadius: BorderRadius.circular(12),
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Image.asset(
+            'assets/ic_time.png',
+            width: 13,
+          ),
+          SizedBox(
+          width: 6,),
+          Text(
+            '06d 23h 00m',
+            style:
+                WhiteRubikTextStyle.copyWith(fontWeight: medium, fontSize: 11),
+          )
+        ],
+      ),
+    );
+  }
+
+  Widget buildRank(){
+    
   }
 }

@@ -7,6 +7,9 @@ Color greyBackgroundColor = const Color(0xffEFEEFC);
 Color whiteBackgroundColor = const Color(0xffFFFFFF);
 Color txtBlackColor = const Color(0xff0C092A);
 Color txtGreyColor = const Color(0xff858494);
+Color orangeColor = const Color(0xffFFB380);
+Color darkOrangeColor = const Color(0xffFF9B57);
+Color darkBlueColor = const Color(0xff22577A);
 
 TextStyle WhiteInterTextStyle = GoogleFonts.inter(
   color: whiteBackgroundColor,
