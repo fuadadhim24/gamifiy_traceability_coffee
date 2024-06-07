@@ -2,17 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 Color greenBackgroundColor = const Color(0xff38A3A5);
+Color greenLightColor = const Color(0xff57CC99);
 Color greyBackgroundColor = const Color(0xffEFEEFC);
 Color whiteBackgroundColor = const Color(0xffFFFFFF);
 Color txtBlackColor = const Color(0xff0C092A);
 Color txtGreyColor = const Color(0xff858494);
 
-TextStyle WhiteTextStyle = GoogleFonts.inter(
+TextStyle WhiteInterTextStyle = GoogleFonts.inter(
   color: whiteBackgroundColor,
 );
 
-TextStyle GreenTextStyle = GoogleFonts.inter(
-  color: greenBackgroundColor,
+TextStyle WhiteRubikTextStyle = GoogleFonts.rubik(
+  color: whiteBackgroundColor,
+);
+
+TextStyle GreenInterTextStyle = GoogleFonts.inter(
+  color: greenLightColor,
+);
+
+TextStyle GreenRubikTextStyle = GoogleFonts.inter(
+  color: greenLightColor,
 );
 
 TextStyle BlackTextStyle = GoogleFonts.inter(

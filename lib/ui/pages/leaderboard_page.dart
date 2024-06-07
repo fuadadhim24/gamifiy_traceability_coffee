@@ -10,15 +10,26 @@ class LeaderboardPage extends StatefulWidget {
 }
 
 class _LeaderboardPageState extends State<LeaderboardPage> {
+  bool isMingguan = true;
+
+  void toggleCategorize() {
+    setState(() {
+      isMingguan = !isMingguan;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: greenBackgroundColor,
       appBar: AppBar(
         toolbarHeight: 88,
         centerTitle: true,
+        bottomOpacity: 0,
+        forceMaterialTransparency: true,
         title: Text(
           'Leaderboard',
-          style: BlackTextStyle.copyWith(
+          style: WhiteInterTextStyle.copyWith(
             fontWeight: semiBold,
             fontSize: 20,
           ),
@@ -31,8 +42,8 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
           topLeft: Radius.circular(40),
           topRight: Radius.circular(40),
         ),
-        maxHeight: MediaQuery.of(context).size.height / 4,
-        minHeight: MediaQuery.of(context).size.height,
+        minHeight: MediaQuery.of(context).size.height / 4,
+        maxHeight: MediaQuery.of(context).size.height,
         panel: Container(
           child: buildSlidingUpPanel(),
         ),
@@ -51,8 +62,74 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
 
   Widget buildBodyPage() {
     return Container(
-      child: Center(
-        child: Text('Body Page'),
+      decoration: BoxDecoration(
+        color: greenBackgroundColor,
+      ),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 16,
+          ),
+          buildTopNavigationToggle(),
+        ],
+      ),
+    );
+  }
+
+  Widget buildTopNavigationToggle() {
+    return Container(
+      height: 45,
+      margin: EdgeInsets.symmetric(horizontal: 42),
+      child: Row(
+        children: [
+          InkWell(
+            onTap: toggleCategorize,
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 300),
+              width: MediaQuery.of(context).size.width / 2 - 44,
+              decoration: BoxDecoration(
+                color: isMingguan ? greenLightColor : greenBackgroundColor,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Center(
+                child: Text(
+                  'Mingguan',
+                  style: isMingguan
+                      ? WhiteRubikTextStyle.copyWith(
+                          fontSize: 16,
+                        )
+                      : GreenRubikTextStyle.copyWith(
+                          fontSize: 16,
+                        ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 4,),
+          InkWell(
+            onTap: toggleCategorize,
+            child: AnimatedContainer(
+              duration: Duration(milliseconds: 300),
+              width: MediaQuery.of(context).size.width / 2 - 44,
+              decoration: BoxDecoration(
+                color: isMingguan ? greenBackgroundColor : greenLightColor,
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Center(
+                child: Text(
+                  'Semua',
+                  style: isMingguan
+                      ? GreenRubikTextStyle.copyWith(
+                          fontSize: 16,
+                        )
+                      : WhiteRubikTextStyle.copyWith(
+                          fontSize: 16,
+                        ),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
