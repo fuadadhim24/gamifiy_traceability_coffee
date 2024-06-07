@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gamify_traceability_coffee/shared/theme.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
+import 'package:gamify_traceability_coffee/ui/widgets/avatar.dart';
 
 class LeaderboardPage extends StatefulWidget {
   const LeaderboardPage({super.key});
@@ -74,13 +75,16 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
             height: 20,
           ),
           buildTopStats(),
-          SizedBox(height:10,),
+          SizedBox(
+            height: 10,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               buildTime(),
             ],
-          )
+          ),
+          buildRanks(),
         ],
       ),
     );
@@ -201,18 +205,109 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
             width: 13,
           ),
           SizedBox(
-          width: 6,),
+            width: 6,
+          ),
           Text(
             '06d 23h 00m',
-            style:
-                WhiteRubikTextStyle.copyWith(fontWeight: medium, fontSize: 11),
-          )
+            style: WhiteRubikTextStyle.copyWith(
+              fontWeight: medium,
+              fontSize: 11,
+            ),
+          ),
         ],
       ),
     );
   }
 
-  // Widget buildRank(){
-    
-  // }
+  Widget buildRanks() {
+    return Container(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          buildRank(3, 2, 'Ipin', '1.252'),
+          buildRank(1, 1, 'Upin', '1.321'),
+          buildRank(6, 3, 'Mail', '1.076'),
+        ],
+      ),
+    );
+  }
+
+  Widget buildRank(numberAvatar, numberRank, name, point) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        AvatarProfile(numberAvatar: numberAvatar),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            SizedBox(
+              height: 8,
+            ),
+            Container(
+              height: 24,
+              padding: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                color: greenLightenColor,
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+              ),
+              child: Center(
+                child: Text(
+                  name,
+                  style: DarkBlueRubikTextStyle.copyWith(
+                    fontWeight: medium,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Container(
+              height: 18,
+              padding: EdgeInsets.symmetric(horizontal: 14,),
+              decoration: BoxDecoration(
+                color: greenLightColor,
+                borderRadius: BorderRadius.all(Radius.circular(5)),
+              ),
+              child: Center(
+                child: Text(
+                  point,
+                  style: WhiteRubikTextStyle.copyWith(
+                    fontWeight: medium,
+                    fontSize: 12,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            Image.asset(
+              getImageRankPath(numberRank),
+              width: (MediaQuery.of(context).size.width - 48) / 3,
+            ),
+            numberRank != 3
+                ? SizedBox(
+                    height: 20,
+                  )
+                : SizedBox(),
+          ],
+        )
+      ],
+    );
+  }
+
+  String getImageRankPath(numberPath) {
+    switch (numberPath) {
+      case 1:
+        return 'assets/rank1nd.png';
+      case 2:
+        return 'assets/rank2nd.png';
+      case 3:
+        return 'assets/rank3nd.png';
+      default:
+        return '';
+    }
+  }
 }

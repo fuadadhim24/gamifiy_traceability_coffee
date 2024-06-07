@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 Color greenBackgroundColor = const Color(0xff38A3A5);
 Color greenLightColor = const Color(0xff57CC99);
+Color greenLightenColor = const Color(0xffC7F9CC);
 Color greyBackgroundColor = const Color(0xffEFEEFC);
 Color whiteBackgroundColor = const Color(0xffFFFFFF);
 Color txtBlackColor = const Color(0xff0C092A);
@@ -25,6 +26,10 @@ TextStyle GreenInterTextStyle = GoogleFonts.inter(
 
 TextStyle GreenRubikTextStyle = GoogleFonts.inter(
   color: greenLightColor,
+);
+
+TextStyle DarkBlueRubikTextStyle = GoogleFonts.inter(
+  color: darkBlueColor,
 );
 
 TextStyle BlackTextStyle = GoogleFonts.inter(
