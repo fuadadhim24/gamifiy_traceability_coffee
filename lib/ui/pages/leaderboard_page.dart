@@ -212,7 +212,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
     );
   }
 
-  Widget buildRank(){
+  // Widget buildRank(){
     
-  }
+  // }
 }
