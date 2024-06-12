@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gamify_traceability_coffee/ui/pages/game_page.dart';
 import 'package:gamify_traceability_coffee/ui/pages/leaderboard_page.dart';
 import 'package:gamify_traceability_coffee/ui/pages/splash_page.dart';
 import 'package:get/get.dart';
@@ -11,10 +12,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: '/leaderboard',
+      initialRoute: '/game',
       getPages: [
         GetPage(name: '/', page: () => const SplashPage()),
         GetPage(name: '/leaderboard', page: () => const LeaderboardPage()),
+        GetPage(name: '/game', page: () => const GamePage()),
       ],
     );
   }
