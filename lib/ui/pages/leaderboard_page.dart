@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:gamify_traceability_coffee/shared/theme.dart';
+import 'package:gamify_traceability_coffee/ui/widgets/card.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:gamify_traceability_coffee/ui/widgets/avatar.dart';
 
@@ -56,8 +57,29 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
 
   Widget buildSlidingUpPanel() {
     return Container(
-      child: Center(
-        child: Text('Sliding Up Panel'),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      child: Column(
+        children: [
+          Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(
+              color: greenLightColor,
+              shape: BoxShape.circle,
+            ),
+          ),
+          SizedBox(
+            height: 7,
+          ),
+          ListView.builder(
+            physics: NeverScrollableScrollPhysics(),
+            itemCount: 4,
+            shrinkWrap: true,
+            itemBuilder: (context, index) {
+              return AvatarCard();
+            },
+          ),
+        ],
       ),
     );
   }
@@ -173,6 +195,15 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
                 Radius.circular(15),
               ),
             ),
+            child: Center(
+              child: Text(
+                '#4',
+                style: WhiteInterTextStyle.copyWith(
+                  fontSize: 24,
+                  fontWeight: medium,
+                ),
+              ),
+            ),
           ),
           Container(
             constraints: BoxConstraints(
@@ -265,7 +296,9 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
             ),
             Container(
               height: 18,
-              padding: EdgeInsets.symmetric(horizontal: 14,),
+              padding: EdgeInsets.symmetric(
+                horizontal: 14,
+              ),
               decoration: BoxDecoration(
                 color: greenLightColor,
                 borderRadius: BorderRadius.all(Radius.circular(5)),

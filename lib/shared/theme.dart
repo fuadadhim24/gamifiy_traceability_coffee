@@ -16,20 +16,26 @@ TextStyle WhiteInterTextStyle = GoogleFonts.inter(
   color: whiteBackgroundColor,
 );
 
-TextStyle WhiteRubikTextStyle = GoogleFonts.rubik(
-  color: whiteBackgroundColor,
-);
-
 TextStyle GreenInterTextStyle = GoogleFonts.inter(
   color: greenLightColor,
 );
 
-TextStyle GreenRubikTextStyle = GoogleFonts.inter(
+TextStyle WhiteRubikTextStyle = GoogleFonts.rubik(
+  color: whiteBackgroundColor,
+);
+TextStyle GreenRubikTextStyle = GoogleFonts.rubik(
   color: greenLightColor,
 );
 
-TextStyle DarkBlueRubikTextStyle = GoogleFonts.inter(
+TextStyle DarkBlueRubikTextStyle = GoogleFonts.rubik(
   color: darkBlueColor,
+);
+
+TextStyle BlackRubikTextStyle = GoogleFonts.rubik(
+  color: txtBlackColor,
+);
+TextStyle GreyRubikTextStyle = GoogleFonts.rubik(
+  color: txtGreyColor,
 );
 
 TextStyle BlackTextStyle = GoogleFonts.inter(

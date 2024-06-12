@@ -10,8 +10,8 @@ class AvatarProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 62,
-      height: 62,
+      width: 56,
+      height: 56,
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage(getImagePath(numberAvatar)),
