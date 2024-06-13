@@ -76,3 +76,58 @@ class _AvatarCardState extends State<AvatarCard> {
     );
   }
 }
+
+class AvatarNonCard extends StatefulWidget {
+  const AvatarNonCard({super.key});
+
+  @override
+  State<AvatarNonCard> createState() => _AvatarNonCardState();
+}
+
+class _AvatarNonCardState extends State<AvatarNonCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 75,
+      padding: EdgeInsets.only(
+        bottom: 16,
+        right: MediaQuery.of(context).size.width / 3,
+      ),
+      decoration: BoxDecoration(
+        color: whiteBackgroundColor,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 2,
+          ),
+          AvatarProfile(numberAvatar: 1),
+          SizedBox(
+            width: 10,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Salma',
+                style: BlackRubikTextStyle.copyWith(
+                    fontWeight: medium, fontSize: 16),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text(
+                '590 Poin',
+                style: GreyRubikTextStyle.copyWith(fontSize: 14),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}

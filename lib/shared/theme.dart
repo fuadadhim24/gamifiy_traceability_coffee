@@ -11,6 +11,7 @@ Color txtGreyColor = const Color(0xff858494);
 Color orangeColor = const Color(0xffFFB380);
 Color darkOrangeColor = const Color(0xffFF9B57);
 Color darkBlueColor = const Color(0xff22577A);
+Color purpleColor = const Color(0xff6A5AE0);
 
 TextStyle WhiteInterTextStyle = GoogleFonts.inter(
   color: whiteBackgroundColor,

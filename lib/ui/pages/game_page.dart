@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gamify_traceability_coffee/shared/theme.dart';
 import 'package:gamify_traceability_coffee/ui/widgets/card.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:gamify_traceability_coffee/ui/widgets/avatar.dart';
+import 'package:get/get.dart';
 
 class GamePage extends StatefulWidget {
   const GamePage({super.key});
@@ -13,13 +15,7 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
-  bool isMingguan = true;
-
-  void toggleCategorize() {
-    setState(() {
-      isMingguan = !isMingguan;
-    });
-  }
+  String currentCategory = 'Tren';
 
   @override
   Widget build(BuildContext context) {
@@ -43,35 +39,56 @@ class _GamePageState extends State<GamePage> {
 
   Widget buildContentCard() {
     return Container(
+      margin: EdgeInsets.only(bottom: 8),
+      padding: EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 4,
+      ),
+      height: MediaQuery.of(context).size.height / 1.4,
+      width: double.infinity,
       decoration: BoxDecoration(
         color: whiteBackgroundColor,
+        borderRadius: BorderRadius.all(
+          Radius.circular(20),
+        ),
       ),
       child: Column(
-        children: [],
+        children: [
+          Container(
+            width: 8,
+            height: 8,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: greenLightColor,
+            ),
+          ),
+          buildTopNavigationToggle(),
+          SizedBox(
+            height: 24,
+          ),
+          buildQuizContent(),
+          SizedBox(
+            height: 24,
+          ),
+          buildFriendsContent(),
+        ],
       ),
     );
   }
 
   Widget buildBodyPage() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 24),
-      decoration: BoxDecoration(
-        color: greenBackgroundColor,
-      ),
+      height: double.infinity,
+      margin: EdgeInsets.symmetric(horizontal: 8),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           buildSearch(),
           SizedBox(
-            height: 10,
+            height: 30,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              buildTime(),
-            ],
-          ),
-          buildContentCard()
+          buildContentCard(),
         ],
       ),
     );
@@ -79,29 +96,31 @@ class _GamePageState extends State<GamePage> {
 
   Widget buildTopNavigationToggle() {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 7),
-      height: 38,
+      margin: EdgeInsets.only(
+        top: 7,
+        left: 7,
+        right: 7,
+      ),
+      padding: EdgeInsets.symmetric(horizontal: 8),
+      height: 20,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           InkWell(
-            onTap: toggleCategorize,
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 300),
-              width: MediaQuery.of(context).size.width / 2 - 44,
-              decoration: BoxDecoration(
-                color: isMingguan ? greenLightColor : greenBackgroundColor,
-                borderRadius: BorderRadius.circular(16),
-              ),
+            onTap: () => toggleCategorize('Tren'),
+            child: Container(
               child: Center(
                 child: Text(
-                  'Mingguan',
-                  style: isMingguan
-                      ? WhiteRubikTextStyle.copyWith(
-                          fontSize: 16,
+                  'Tren',
+                  style: currentCategory == 'Tren'
+                      ? TextStyle(
+                          color: Colors.green, // Teks hijau jika aktif
+                          fontSize: 14,
                         )
-                      : GreenRubikTextStyle.copyWith(
-                          fontSize: 16,
+                      : TextStyle(
+                          color: Colors.grey, // Teks abu-abu jika tidak aktif
+                          fontSize: 14,
                         ),
                 ),
               ),
@@ -111,23 +130,65 @@ class _GamePageState extends State<GamePage> {
             height: 4,
           ),
           InkWell(
-            onTap: toggleCategorize,
-            child: AnimatedContainer(
-              duration: Duration(milliseconds: 300),
-              width: MediaQuery.of(context).size.width / 2 - 44,
-              decoration: BoxDecoration(
-                color: isMingguan ? greenBackgroundColor : greenLightColor,
-                borderRadius: BorderRadius.circular(16),
-              ),
+            onTap: () => toggleCategorize('Quiz'),
+            child: Container(
               child: Center(
                 child: Text(
-                  'Semua',
-                  style: isMingguan
-                      ? GreenRubikTextStyle.copyWith(
-                          fontSize: 16,
+                  'Quiz',
+                  style: currentCategory == 'Quiz'
+                      ? TextStyle(
+                          color: Colors.green,
+                          fontSize: 14,
                         )
-                      : WhiteRubikTextStyle.copyWith(
-                          fontSize: 16,
+                      : TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 4,
+          ),
+          InkWell(
+            onTap: () => toggleCategorize('Kategori'),
+            child: Container(
+              child: Center(
+                child: Text(
+                  'Kategori',
+                  style: currentCategory == 'Kategori'
+                      ? TextStyle(
+                          color: Colors.green,
+                          fontSize: 14,
+                        )
+                      : TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 4,
+          ),
+          GestureDetector(
+            onTap: () {
+              Get.toNamed('/leaderboard');
+            },
+            child: Container(
+              child: Center(
+                child: Text(
+                  'Leaderboard',
+                  style: currentCategory == 'Leaderboard'
+                      ? TextStyle(
+                          color: Colors.green,
+                          fontSize: 14,
+                        )
+                      : TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
                         ),
                 ),
               ),
@@ -141,6 +202,8 @@ class _GamePageState extends State<GamePage> {
   Widget buildSearch() {
     return Container(
       height: 56,
+      margin: EdgeInsets.symmetric(horizontal: 16),
+      padding: EdgeInsets.all(8),
       width: MediaQuery.of(context).size.width / 4,
       decoration: BoxDecoration(
         color: greenLightColor,
@@ -148,119 +211,147 @@ class _GamePageState extends State<GamePage> {
           Radius.circular(20),
         ),
       ),
-      child: Center(
-        child: ,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.search,
+            color: whiteBackgroundColor,
+            size: 24,
+          ),
+        ],
       ),
     );
   }
 
-  Widget buildTime() {
+  Widget buildQuizContent() {
     return Container(
-      decoration: BoxDecoration(
-        color: darkBlueColor,
-        borderRadius: BorderRadius.circular(12),
-      ),
-      padding: EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Column(
         children: [
-          Image.asset(
-            'assets/ic_time.png',
-            width: 13,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'Quiz',
+                style: BlackRubikTextStyle.copyWith(
+                  fontSize: 20,
+                  fontWeight: medium,
+                ),
+              ),
+              Text(
+                'Lihat Semua',
+                style: GreenRubikTextStyle.copyWith(
+                  fontSize: 14,
+                  fontWeight: medium,
+                ),
+              ),
+            ],
           ),
           SizedBox(
-            width: 6,
+            height: 16,
           ),
-          Text(
-            '06d 23h 00m',
-            style: WhiteRubikTextStyle.copyWith(
-              fontWeight: medium,
-              fontSize: 11,
-            ),
+          Container(
+            height: 180,
+            child: listBuilderQuiz(),
           ),
         ],
       ),
     );
   }
 
-  Widget buildRanks() {
+  Widget listBuilderQuiz() {
+    return ListView.builder(
+      itemCount: 4,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return buildQuizCard();
+      },
+    );
+  }
+
+  Widget buildQuizCard() {
     return Container(
+      margin: EdgeInsets.only(bottom: 16),
+      padding: EdgeInsets.symmetric(
+        vertical: 12,
+        horizontal: 16,
+      ),
+      height: 80,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: greyBackgroundColor),
+      ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          buildRank(3, 2, 'Ipin', '1.252'),
-          buildRank(1, 1, 'Upin', '1.321'),
-          buildRank(6, 3, 'Mail', '1.076'),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Perawatan Kopi',
+                style: BlackRubikTextStyle.copyWith(
+                  fontSize: 16,
+                  fontWeight: medium,
+                ),
+              ),
+              Text(
+                'Kopi • 12 Quiz',
+                style: GreyRubikTextStyle.copyWith(
+                  fontSize: 12,
+                ),
+              ),
+            ],
+          ),
+          Transform.rotate(
+            angle: 3.14,
+            child: Icon(
+              Icons.arrow_back_ios_new_outlined,
+              color: purpleColor,
+              size: 12,
+            ),
+          )
         ],
       ),
     );
   }
 
-  Widget buildRank(numberAvatar, numberRank, name, point) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        AvatarProfile(numberAvatar: numberAvatar),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            SizedBox(
-              height: 8,
-            ),
-            Container(
-              height: 24,
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              decoration: BoxDecoration(
-                color: greenLightenColor,
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              child: Center(
-                child: Text(
-                  name,
-                  style: DarkBlueRubikTextStyle.copyWith(
-                    fontWeight: medium,
-                    fontSize: 12,
-                  ),
+  Widget buildFriendsContent() {
+    return Container(
+      child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                'Teman',
+                style: BlackRubikTextStyle.copyWith(
+                  fontSize: 20,
+                  fontWeight: medium,
                 ),
               ),
-            ),
-            SizedBox(
-              height: 4,
-            ),
-            Container(
-              height: 18,
-              padding: EdgeInsets.symmetric(
-                horizontal: 14,
-              ),
-              decoration: BoxDecoration(
-                color: greenLightColor,
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              child: Center(
-                child: Text(
-                  point,
-                  style: WhiteRubikTextStyle.copyWith(
-                    fontWeight: medium,
-                    fontSize: 12,
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Image.asset(
-              getImageRankPath(numberRank),
-              width: (MediaQuery.of(context).size.width - 48) / 3,
-            ),
-            numberRank != 3
-                ? SizedBox(
-                    height: 20,
-                  )
-                : SizedBox(),
-          ],
-        )
-      ],
+            ],
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          Container(
+            height: 210,
+            child: listBuilderAvatar(),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget listBuilderAvatar() {
+    return ListView.builder(
+      itemCount: 4,
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return AvatarNonCard();
+      },
     );
   }
 
@@ -275,5 +366,11 @@ class _GamePageState extends State<GamePage> {
       default:
         return '';
     }
+  }
+
+  void toggleCategorize(String category) {
+    setState(() {
+      currentCategory = category;
+    });
   }
 }
