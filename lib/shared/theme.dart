@@ -27,6 +27,9 @@ TextStyle WhiteRubikTextStyle = GoogleFonts.rubik(
 TextStyle GreenRubikTextStyle = GoogleFonts.rubik(
   color: greenLightColor,
 );
+TextStyle OrangeRubikTextStyle = GoogleFonts.rubik(
+  color: orangeColor,
+);
 
 TextStyle DarkBlueRubikTextStyle = GoogleFonts.rubik(
   color: darkBlueColor,
