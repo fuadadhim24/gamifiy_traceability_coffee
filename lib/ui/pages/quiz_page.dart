@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gamify_traceability_coffee/models/data.dart';
-import 'package:gamify_traceability_coffee/models/option.dart';
-import 'package:gamify_traceability_coffee/models/question.dart';
+import 'package:gamify_traceability_coffee/models/quiz.dart';
 
 class QuizPage extends StatefulWidget {
-  const QuizPage({super.key});
+  final Quiz quiz;
+
+  const QuizPage({required this.quiz, super.key});
 
   @override
   State<QuizPage> createState() => _QuizPageState();
@@ -19,7 +19,7 @@ class _QuizPageState extends State<QuizPage> {
       _score++;
     }
 
-    if (_currentQuestionIndex < questions.length - 1) {
+    if (_currentQuestionIndex < widget.quiz.questions.length - 1) {
       setState(() {
         _currentQuestionIndex++;
       });
@@ -43,7 +43,16 @@ class _QuizPageState extends State<QuizPage> {
                 _score = 0;
               });
             },
-            child: const Text('Ulangi'),
+            child: const Text('Ulangi',
+             style: TextStyle(color: Colors.green, fontSize: 14),),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+              Navigator.of(context).pop(); 
+            },
+            child: const Text('Kembali ke Daftar Kuis',
+            style: TextStyle(color: Colors.green, fontSize: 14),),
           ),
         ],
       ),
@@ -52,12 +61,11 @@ class _QuizPageState extends State<QuizPage> {
 
   @override
   Widget build(BuildContext context) {
-    final question = questions[_currentQuestionIndex];
-    final questionOptions = options.where((option) => option.questionId == question.id).toList();
+    final question = widget.quiz.questions[_currentQuestionIndex];
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Kuis'),
+        title: Text(widget.quiz.title,style: TextStyle(color: Colors.green, fontSize: 14),),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -66,10 +74,10 @@ class _QuizPageState extends State<QuizPage> {
           children: [
             Text(
               question.content,
-              style: const TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+              style: const TextStyle(color: Colors.green,fontSize: 24.0, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 20.0),
-            ...questionOptions.map((option) => Container(
+            ...question.options.map((option) => Container(
                   margin: const EdgeInsets.symmetric(vertical: 8.0),
                   child: ElevatedButton(
                     onPressed: () => _nextQuestion(option.isCorrect),

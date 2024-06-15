@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:gamify_traceability_coffee/models/data.dart';
 import 'package:gamify_traceability_coffee/shared/theme.dart';
 import 'package:gamify_traceability_coffee/ui/pages/quiz_page.dart';
+import 'package:gamify_traceability_coffee/ui/pages/quiz_selection.dart';
 import 'package:gamify_traceability_coffee/ui/widgets/card.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 import 'package:gamify_traceability_coffee/ui/widgets/avatar.dart';
@@ -130,31 +132,31 @@ class _GamePageState extends State<GamePage> {
                       SizedBox(
                 height: 4,
               ),
-              GestureDetector(
-                onTap: () {
-                  toggleCategorize('Quiz');
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => QuizPage()),
-                  );
-                },
-                child: Container(
-                  child: Center(
-                    child: Text(
-                      'Quiz',
-                      style: currentCategory == 'Quiz'
-                          ? TextStyle(
-                              color: Colors.green,
-                              fontSize: 14,
-                            )
-                          : TextStyle(
-                              color: Colors.grey,
-                              fontSize: 14,
-                            ),
-                    ),
-                  ),
+         GestureDetector(
+            onTap: () {
+              toggleCategorize('Quiz');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => QuizSelectionPage()),
+              );
+            },
+            child: Container(
+              child: Center(
+                child: Text(
+                  'Quiz',
+                  style: currentCategory == 'Quiz'
+                      ? TextStyle(
+                          color: Colors.green,
+                          fontSize: 14,
+                        )
+                      : TextStyle(
+                          color: Colors.grey,
+                          fontSize: 14,
+                        ),
                 ),
               ),
+            ),
+          ),
           SizedBox(
             height: 4,
           ),
