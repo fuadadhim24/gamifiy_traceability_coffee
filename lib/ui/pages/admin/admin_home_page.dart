@@ -197,7 +197,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                     ),
                     child: Center(
                       child: Icon(
-                        Icons.assessment,
+                        Icons.book,
                         color: greenLightColor,
                         size: 34,
                       ),

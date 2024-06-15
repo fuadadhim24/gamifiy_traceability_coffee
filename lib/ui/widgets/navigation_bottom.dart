@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gamify_traceability_coffee/ui/pages/admin/admin_home_page.dart';
+import 'package:gamify_traceability_coffee/ui/pages/admin/profile_page.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 
 class NavigationBottom extends StatefulWidget {
@@ -15,7 +16,7 @@ class _NavigationBottomState extends State<NavigationBottom> {
   // Define your pages here
   final List<Widget> _pages = [
     AdminHomePage(),
-    CatatanPage(),
+    ProfilePage(),
     ExplorePage(),
     ProfilePage(),
   ];
@@ -41,7 +42,7 @@ class _NavigationBottomState extends State<NavigationBottom> {
 
             /// Likes
             SalomonBottomBarItem(
-              icon: Icon(Icons.favorite_border),
+              icon: Icon(Icons.assessment),
               title: Text("Catatan"),
               selectedColor: Colors.pink,
             ),
@@ -109,16 +110,16 @@ class ExplorePage extends StatelessWidget {
   }
 }
 
-class ProfilePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
-      ),
-      body: Center(
-        child: Text('Profile Page'),
-      ),
-    );
-  }
-}
+// class ProfilePage extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Profile'),
+//       ),
+//       body: Center(
+//         child: Text('Profile Page'),
+//       ),
+//     );
+//   }
+// }

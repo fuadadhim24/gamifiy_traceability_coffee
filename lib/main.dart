@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: '/navigation',
+      initialRoute: '/admin-navigation',
       getPages: [
         GetPage(name: '/', page: () => const SplashPage()),
         GetPage(name: '/leaderboard', page: () => const LeaderboardPage()),
