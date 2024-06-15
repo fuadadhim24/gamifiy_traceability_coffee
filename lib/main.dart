@@ -4,6 +4,7 @@ import 'package:gamify_traceability_coffee/ui/pages/mahasiswa/leaderboard_page.d
 import 'package:gamify_traceability_coffee/ui/pages/mahasiswa/game_page.dart';
 import 'package:gamify_traceability_coffee/ui/pages/splash_page.dart';
 import 'package:gamify_traceability_coffee/ui/pages/mahasiswa/home_page.dart';
+import 'package:gamify_traceability_coffee/ui/widgets/navigation_bottom.dart';
 
 import 'package:get/get.dart';
 
@@ -15,10 +16,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialRoute: '/admin-home',
+      initialRoute: '/navigation',
       getPages: [
         GetPage(name: '/', page: () => const SplashPage()),
         GetPage(name: '/leaderboard', page: () => const LeaderboardPage()),
+        GetPage(name: '/admin-navigation', page: () => NavigationBottom()),
         GetPage(name: '/game', page: () => const GamePage()),
         GetPage(name: '/admin-home', page: () => const AdminHomePage()),
       ],

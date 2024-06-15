@@ -57,7 +57,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
           ),
           buildFastMenu(),
           SizedBox(
-            height: 18,
+            height: 24,
           ),
           buildArtikelContent(),
         ],
@@ -182,15 +182,15 @@ class _AdminHomePageState extends State<AdminHomePage> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(
-          height: 130,
+          height: 80,
           child: Row(
             children: [
               Column(
                 children: [
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 15),
-                    width: 84,
-                    height: 84,
+                    width: 54,
+                    height: 54,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: whiteBackgroundColor,
@@ -217,8 +217,8 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 children: [
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 15),
-                    width: 84,
-                    height: 84,
+                    width: 54,
+                    height: 54,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: whiteBackgroundColor,
@@ -245,8 +245,36 @@ class _AdminHomePageState extends State<AdminHomePage> {
                 children: [
                   Container(
                     margin: EdgeInsets.symmetric(horizontal: 15),
-                    width: 84,
-                    height: 84,
+                    width: 54,
+                    height: 54,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: whiteBackgroundColor,
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.qr_code,
+                        color: greenLightColor,
+                        size: 34,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Text(
+                    'SCAN',
+                    style: WhiteInterTextStyle.copyWith(
+                        fontWeight: semiBold, fontSize: 12),
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 15),
+                    width: 54,
+                    height: 54,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: whiteBackgroundColor,
@@ -293,7 +321,7 @@ class _AdminHomePageState extends State<AdminHomePage> {
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   decoration: BoxDecoration(
                       color: darkBlueColor,
                       borderRadius: BorderRadius.circular(16)),
